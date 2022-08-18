@@ -6,7 +6,7 @@
 
 body {
   background: linear-gradient(to right, rgb(236, 168, 168), rgb(240, 240, 96));
-  font-family:  "Noto Sans TC", sans-serif;
+  font-family: "Noto Sans TC", sans-serif;
 }
 
 .wrapper {
@@ -69,14 +69,36 @@ main {
       border-radius: 0.5rem 0.5rem 0 0;
       background-color: white;
       display: flex;
-      img {
-        margin-right: 0.5rem;
-        width: 2.5rem;
-        height: 2.5rem;
+      justify-content: space-between;
+      .d-flex {
+        display: flex;
+        img {
+          margin-right: 0.5rem;
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+        .msgText {
+          h3 {
+            margin-top: 0.5rem;
+          }
+        }
       }
-      .msgText {
-        h3 {
-          margin-top: 0.5rem;
+
+      .deleteBtn {
+        button {
+          align-self: flex-end;
+          padding: 0.4rem 0.5rem;
+          border: 0;
+          border-radius: 3px;
+          background-color: #3397cf;
+          color: white;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #5ab0db;
+            color: white;
+            transition: all 0.3s ease;
+          }
         }
       }
     }
@@ -89,6 +111,12 @@ main {
 
       .replyText {
         margin: 0.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        .deleteBtn{
+          margin-right: 2.5rem;
+          cursor: pointer;
+        }
       }
 
       form {

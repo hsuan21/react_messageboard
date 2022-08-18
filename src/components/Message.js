@@ -20,8 +20,8 @@ function Message({ item, messageArr, setMessageArr, index }) {
     if (reply == "") {
       alert("請輸入內容");
     } else {
-      // 將目前留言的陣列存到一個新陣列中
-      let newArr = [...messageArr]
+      // 將目前留言的陣列存到一個新陣列中，不能用let newArr = messageArr，這樣會參照到同一個記憶體位址，改到state
+      let newArr = [...messageArr];
       // 將回覆新增至留言裡的陣列中
       newArr[index].reply = [...newArr[index].reply, reply];
       // 更新留言的陣列
@@ -33,16 +33,32 @@ function Message({ item, messageArr, setMessageArr, index }) {
     }
   };
 
+  // 按下刪除時執行
+  const deleteHandler = (e) => {
+    // 篩選不是這個index的留言，存到一個新陣列中
+    let newArr = messageArr.filter((v, i) => index != i);
+    // 更新留言的陣列
+    setMessageArr(newArr);
+    // 將刪除留言後的整個陣列存到localstorage
+    localStorage.setItem("message", JSON.stringify(newArr));
+  };
+
   return (
     // 一整個留言區塊
     <div className="item">
       {/* 留言區 */}
       <div className="message">
-        <img src={require("../images/user.jpg")} alt="" />
-        <div className="msgText">
-          <p>機器人{index}號</p>
-          <p>{item.time}</p>
-          <h3>{item.message}</h3>
+        <div className="d-flex">
+          <img src={require("../images/user.jpg")} alt="" />
+          <div className="msgText">
+            <p>機器人{index}號</p>
+            <p>{item.time}</p>
+            <h3>{item.message}</h3>
+          </div>
+        </div>
+
+        <div className="deleteBtn">
+          <button onClick={deleteHandler}>刪除</button>
         </div>
       </div>
       {/* 回覆區 */}
@@ -50,7 +66,16 @@ function Message({ item, messageArr, setMessageArr, index }) {
         {
           // 留言底下的回覆
           messageArr[index].reply.map((v, i) => {
-            return <Reply key={i} value={v} index={i} />;
+            return (
+              <Reply
+                key={i}
+                reply={v}
+                replyIndex={i}
+                messageArr={messageArr}
+                setMessageArr={setMessageArr}
+                messageIndex={index}
+              />
+            );
           })
         }
         <form>
