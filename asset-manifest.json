@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react_messageboard/static/css/main.0f31f310.css",
+    "main.js": "/react_messageboard/static/js/main.e958d8e6.js",
+    "index.html": "/react_messageboard/index.html",
+    "main.0f31f310.css.map": "/react_messageboard/static/css/main.0f31f310.css.map",
+    "main.e958d8e6.js.map": "/react_messageboard/static/js/main.e958d8e6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0f31f310.css",
+    "static/js/main.e958d8e6.js"
+  ]
+}
